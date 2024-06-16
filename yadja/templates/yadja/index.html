@@ -5,9 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Title</title>
+    <title>S3 Test</title>
 </head>
 <body>
-    Hello
+    <h1>
+        S3 Storage test
+    </h1>
+    <form enctype="multipart/form-data" action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>    
+    <ul>
+    {% for p in photos reversed %}
+        <li>
+            <img src="{{ p.image.url }}" alt="" width="300">
+            {{ p.created }} {{ p.name }}
+        </li>
+    {% endfor %}
+    </ul>
+        
 </body>
 </html>
