@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'storages',
 
     'yadja',
 ]
@@ -127,3 +131,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ===== yandex storage
+DEFAULT_FILE_STORAGE = 'config.s3_storage.MediaStorage'
+# STATICFILES_STORAGE = 'config.s3_storage.StaticStorage'
+
+AWS_S3_ENDPOINT_URL = 'https://storage.yandexcloud.net'
+AWS_S3_ACCESS_KEY_ID = config('AWS_S3_ACCESS_KEY_ID')
+AWS_S3_SECRET_ACCESS_KEY = config('AWS_S3_SECRET_ACCESS_KEY')
+AWS_QUERYSTRING_AUTH = False
+print(AWS_S3_ACCESS_KEY_ID)
