@@ -18,7 +18,7 @@ def index_view(request):
     else:
         form = PhotoForm()
     template_name = "yadja/index.html"
-    qs = Photo.objects.all()[:10]
+    qs = Photo.objects.order_by('-id')[:10]
     context = {
         "photos": qs,
         "form": form,

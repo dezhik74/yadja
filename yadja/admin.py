@@ -5,4 +5,4 @@ from yadja.models import Photo
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id', 'name', 'image', ]
